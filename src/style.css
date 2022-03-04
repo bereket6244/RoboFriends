@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&family=Roboto:wght@300&display=swap");
+:root {
+  --defailt: rgb(207, 217, 245);
+  --correct: green;
+  --wrong: red;
+  --maybe: rgb(247, 223, 14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100vw;
+  margin: 1rem;
+  /* padding-bottom: 9rem; */
+  gap: 10px;
+  /* background-color: #fed586; */
+  overflow: hidden;
+  /* padding: 10rem; */
+}
+
+.game {
+  /* height: 100%; */
+  width: 33.3%;
+  /* background-color: burlywood; */
+  /* border: black solid 2px; */
+  background-color: #fdc75f;
+  border: #705a30 solid 1px;
+
+  /* padding: 1rem; */
+  gap: 5px;
+}
+.preview {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  width: 100%;
+  margin: 1rem;
+}
+
+.p-view {
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guess,
+.guessed {
+  border: black solid 0.05rem;
+}
+
+.estimate,
+.estimated {
+  background-color: gray;
+  border: 1px solid black;
+}
+.square {
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(1fr, 100%));
+  grid-template-rows: repeat(4, 2rem);
+  gap: 2px;
+  /* height: fit-content; */
+  width: 100%;
+  margin: 1rem;
+}
+
+.k-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
+
+.key {
+  border: black solid 0.05rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  /* background-color: #79b7a1; */
+  color: black;
+  cursor: pointer;
+  background-color: #ec3535;
+}
+
+.btn--normal {
+  background: var(--defailt);
+}
+
+.btn--green {
+  background: var(--correct);
+}
+
+.btn--red {
+  background: var(--wrong);
+}
+
+.btn--purple {
+  background: var(--maybe);
+}
+button:hover {
+  filter: brightness(120%);
+  cursor: pointer;
+}
+
+.width-full {
+  width: 100%;
+  display: none;
+}
+
+.span-3 {
+  grid-column: span 3;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  width: 33.3%;
+  /* padding: 2rem; */
+  justify-content: space-between;
+  /* background-color: blueviolet; */
+  /* border: black solid 2px; */
+  border: #705a30 solid 1px;
+
+  background-color: #fdc75f;
+}
+.history-square {
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.h-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 2px;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 1rem 2rem 1rem 2rem;
+
+  gap: 2px;
+  overflow: auto;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 33.3%;
+  /* height: fit-content; */
+  /* background-color: brown; */
+  border: #705a30 solid 1px;
+  background-color: #fdc75f;
+
+  padding: 2rem;
+}
+
+.color-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* you can sqeez the numpad with the pading  */
+  /* padding: 35% 20% 35% 20%; */
+  /* height: 100%;
+  width: 100%; */
+  /* aspect-ratio: 3/1; */
+  gap: 2px;
+  justify-content: center;
+}
+
+.t-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.game-btn,
+.history-btn,
+.track-btn {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.clr-btn {
+  width: 100%;
+}
+.sidenav {
+  width: 100vw;
+  overflow: hidden;
+  /* background-color: rebeccapurple; */
+  border: black solid 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.navbar {
+  width: 100vw;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #a57d33;
+}
+
+.nav-link {
+  font-size: 0.5rem;
+}
+.fullsite {
+  padding: 0;
+  /* display: flex; */
+  flex-direction: column;
+  overflow: hidden;
+  width: 100vw;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fed586;
+}
+@media (max-width: 1500px) {
+  * {
+    font-size: 25px;
+  }
+  .color-pad {
+    padding-top: 50%;
+    padding-bottom: 50%;
+  }
+}
+
+@media (max-width: 1016px) {
+  .history {
+    display: none;
+  }
+  .game {
+    width: 50%;
+  }
+
+  .track {
+    width: 50%;
+  }
+  .width-full {
+    display: flex;
+  }
+  /* i dont remember why i did this */
+  /* .color-pad {
+    padding-top: 70%;
+    padding-bottom: 70%;
+    border: black solid 0.05rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    cursor: pointer;
+  } */
+}
+
+@media (max-width: 800px) {
+  .track {
+    display: none;
+  }
+  .game {
+    width: 100%;
+    /* padding-bottom: 4rem; */
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .p-view {
+    height: 50%;
+  }
+  .k-board {
+    height: 50%;
+  }
+}
+
+@media (min-width: 2500px) {
+  .color-pad {
+    padding-top: 25%;
+    padding-bottom: 25%;
+  }
+}
