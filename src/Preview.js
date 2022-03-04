@@ -1,52 +1,53 @@
 import React, {useState} from "react";
 import './style.css'
 
-let correctNumber = 0
-let correctPosition =0
-let ranNum = []
+
 
 let  Preview = () => {
-    
+    let correctNumber = 0
+    let correctPosition =0
+    let ranNum = []
+
     startInteraction();
     generateRandomNumber();
 
     function startInteraction(){
-        document.addEventListener("click", handleMouseClick)
-        document.addEventListener("keydown", handleKeyPress)
-    }
-    
+                document.addEventListener("click", handleMouseClick)
+                document.addEventListener("keydown", handleKeyPress)
+            }
+            
     function stopInteraction(){
-        document.removeEventListener("click", handleMouseClick)
-        document.removeEventListener("keydown", handleKeyPress)
-    }
+                document.removeEventListener("click", handleMouseClick)
+                document.removeEventListener("keydown", handleKeyPress)
+            }
 
     function generateRandomNumber(){
-        ranNum[0] = (Math.floor(Math.random() * 10))
-        while(ranNum [0] === "0"){
-        ranNum[0] = (Math.floor(Math.random() * 10))
-        }
-        ranNum[1] = (Math.floor(Math.random() * 10))
-        while(ranNum[1] === ranNum[0]){
-        ranNum[1] = (Math.floor(Math.random() * 10))
-        }
-        ranNum[2] = (Math.floor(Math.random() * 10))
-        while(ranNum[2] === ranNum [0] || ranNum[2] === ranNum[1]){
-        ranNum[2] = (Math.floor(Math.random() * 10))
-        }
-        ranNum[3] = (Math.floor(Math.random() * 10))
-        while(ranNum[3] === ranNum[0]||ranNum[3] === ranNum[1]||ranNum[3] === ranNum[2]){
-        ranNum[3] = (Math.floor(Math.random() * 10))
-        }   
+                ranNum[0] = (Math.floor(Math.random() * 10))
+                while(ranNum [0] === "0"){
+                ranNum[0] = (Math.floor(Math.random() * 10))
+                }
+                ranNum[1] = (Math.floor(Math.random() * 10))
+                while(ranNum[1] === ranNum[0]){
+                ranNum[1] = (Math.floor(Math.random() * 10))
+                }
+                ranNum[2] = (Math.floor(Math.random() * 10))
+                while(ranNum[2] === ranNum [0] || ranNum[2] === ranNum[1]){
+                ranNum[2] = (Math.floor(Math.random() * 10))
+                }
+                ranNum[3] = (Math.floor(Math.random() * 10))
+                while(ranNum[3] === ranNum[0]||ranNum[3] === ranNum[1]||ranNum[3] === ranNum[2]){
+                ranNum[3] = (Math.floor(Math.random() * 10))
+                }   
+            }
+
+          // used to assign the values the user inputs so that they can be displayed when they are pressed
+    let [nums, setNums] = useState([])
+
+    function addItem(e){
+        setNums([...nums, e])
     }
 
-    // used to assign the values the user inputs so that they can be displayed when they are pressed
-     let [nums, setNums] = useState([])
-
-     function addItem(e){
-        setNums([...nums, e])
-      }
-
-     function removeItem(){
+    function removeItem(){
         var numbs = [...nums]
         if (numbs.length < 4){
             numbs.splice(numbs.length - 1, 1);
@@ -54,94 +55,91 @@ let  Preview = () => {
         else {
             numbs.splice(3, 1)
         }
-        setNums(numbs)
-    }
+          setNums(numbs)
+        }
 
-     function checkNumPo(){
-            
-                for (let j = 0; j <= 3; j++){
-                    for (let i = 0; i <= 3; i++) {
-                        if (nums[i] === ranNum[i]){
-                            correctNumber++
-                            if(j === i){
+    function checkNumPo(){
+        if (nums[0] !== ""  && nums[1] !== "" && nums[2] !== "" && nums[3] !== ""){
+            for (let j = 0; j <= 3; j++){
+                for (let i = 0; i <= 3; i++) {
+                    if (nums[i] === ranNum[i]){
+                        correctNumber++
+                        if(j === i){
                             correctPosition++
-                            }
                         }
                     }
                 }
-            
+            }
         }
+    }
       
-        
-    
-        function handleMouseClick(e){
-            if (e.target.matches("[data-enter]")){
-                
-                return
-            }
-            if (e.target.matches("[data-delete]")){
-                deleteKey()
-                return
-            }
-            if (e.target.matches("[data-key]")){
-                pressKey(e.target.dataset.key)
-                return
-            }  
-            if (e.target.matches("[data-history]")){
-                pressHistory()
-                return
-            }
-            if(e.target.matches("[data-back]")){
-                pressBack()
-                return
-            }
+    function handleMouseClick(e){
+        if (e.target.matches("[data-enter]")){
+            submitGuess()
+            return
         }
-        function handleKeyPress(e){
-            if (e.key === "Enter") {
-                submitGuess()
-                return
-            }
-        
-            if (e.key === "Backspace" || e.key === "Delete") {
-                deleteKey()
-                return
-            }
-        
-            if (e.key.match(/^[0-9]/)){
-                pressKey(e.key)
-                return
-            }
-        
-            if (e.key === "h" || e.key === "H"){
-                pressHistory()
-                return
-            }
-            if (e.key === "b" || e.key === "B") {
-                pressBack()
-                return
-            }
+        if (e.target.matches("[data-delete]")){
+            deleteKey()
+            return
         }
-    
-        function submitGuess(){
-            console.log(ranNum)
-            checkNumPo()
-            console.log(correctPosition)
-            console.log(correctNumber)
-
-            
+        if (e.target.matches("[data-key]")){
+            pressKey(e.target.dataset.key)
+            return
+        }  
+        if (e.target.matches("[data-history]")){
+            pressHistory()
+            return
         }
-        function deleteKey(){
-            removeItem()
+        if(e.target.matches("[data-back]")){
+            pressBack()
+            return
         }
-        function pressKey(e){
-                addItem(e)
+    }
+    function handleKeyPress(e){
+        if (e.key === "Enter") {
+            submitGuess()
+            return
         }
-        function pressBack(){
-            
+        if (e.key === "Backspace" || e.key === "Delete") {
+            deleteKey()
+            return
         }
-        function pressHistory(){
-            
+        if (e.key.match(/^[0-9]/)){
+            pressKey(e.key)
+            return
         }
+        if (e.key === "h" || e.key === "H"){
+            pressHistory()
+            return
+        }
+        if (e.key === "b" || e.key === "B") {
+            pressBack()
+            return
+        }
+    }
+     
+    function submitGuess(){
+        console.log(ranNum)
+        checkNumPo()
+        console.log(correctPosition)
+        console.log(correctNumber)
+        return   
+    }
+    function deleteKey(){
+        removeItem()
+        return
+    }
+    function pressKey(e){
+        addItem(e)
+        return
+    }
+    function pressBack(){
+        console.log("backises")
+        return  
+        }
+    function pressHistory(){
+        console.log("histories")      
+    }
 
     return (
         <div className="preview">
