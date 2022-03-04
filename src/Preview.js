@@ -42,9 +42,14 @@ let  Preview = () => {
 
           // used to assign the values the user inputs so that they can be displayed when they are pressed
     let [nums, setNums] = useState([])
+    let [numsh, setNumsH] = useState([])
 
     function addItem(e){
         setNums([...nums, e])
+    }
+
+    function addItemH(){
+        setNumsH([...nums, correctNumber, correctPosition])
     }
 
     function removeItem(){
@@ -119,10 +124,8 @@ let  Preview = () => {
     }
      
     function submitGuess(){
-        console.log(ranNum)
-        checkNumPo()
-        console.log(correctPosition)
-        console.log(correctNumber)
+        addItemH()
+        setNums([])
         return   
     }
     function deleteKey(){
@@ -143,12 +146,12 @@ let  Preview = () => {
 
     return (
         <div className="preview">
-                <div className="guessed square" id="firsth">1</div>
-                <div className="guessed square" id="secondh">2</div>
-                <div className="guessed square" id="thirdh">3</div>
-                <div className="guessed square" id="fourthh">4</div>
-                <div className="estimated square" id="numberh">5</div>
-                <div className="estimated square" id ="positionh">6</div>
+                <div className="guessed square" id="firsth">{numsh[0]}</div>
+                <div className="guessed square" id="secondh">{numsh[1]}</div>
+                <div className="guessed square" id="thirdh">{numsh[2]}</div>
+                <div className="guessed square" id="fourthh">{numsh[3]}</div>
+                <div className="estimated square" id="numberh">{numsh[4]}</div>
+                <div className="estimated square" id ="positionh">{numsh[5]}</div>
                 <div></div>
                 <div className="guess square" id="first">{nums[0]}</div>
                 <div className="guess square" id="second">{nums[1]}</div>
